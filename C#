@@ -1,0 +1,81 @@
+using System;
+
+namespace ProgrammingExercise
+{
+    public class Student 
+    {
+        public string StudentID { get; set; }
+        public string Name { get; set; }
+        public string Course { get; set; }
+
+        public Student(string studentID, string name, string course) 
+        {
+            StudentID = studentID;
+            Name = name;
+            Course = course;
+        }
+
+        public void DisplayInfo() 
+        {
+            Console.WriteLine($"Student ID: {StudentID}");
+            Console.WriteLine($"Name: {Name}");
+            Console.WriteLine($"Course: {Course}\n");
+        }
+    }
+    
+    public class BankAccount 
+    {
+        private string _accountNumber;
+        private string _accountHolder;
+        private double _balance;
+
+        public BankAccount(string accountNumber, string accountHolder, double initialBalance) 
+        {
+            _accountNumber = accountNumber;
+            _accountHolder = accountHolder;
+            _balance = initialBalance;
+        }
+
+        public void Deposit(double amount) 
+        {
+            if (amount > 0) {
+                _balance += amount;
+                Console.WriteLine("Deposit Successful!");
+            }
+        }
+
+        public void Withdraw(double amount) 
+        {
+            if (amount > 0 && amount <= _balance) {
+                _balance -= amount;
+                Console.WriteLine("Withdrawal Successful!");
+            } else {
+                Console.WriteLine("Insufficient funds!");
+            }
+        }
+
+        public void DisplayBalance() 
+        {
+            Console.WriteLine($"Current Balance: {_balance:F2}");
+        }
+    }
+
+    public class Program 
+    {
+        public static void Main(string[] args) 
+        {
+            
+            Console.WriteLine("--- Student Details ---");
+            Student s1 = new Student("2023001", "Galceran Jien Panhay", "BS Computer Science");
+            Student s2 = new Student("2023002", "Juan Dela Cruz", "BS Information Technology");
+            s1.DisplayInfo();
+            s2.DisplayInfo();
+            
+            Console.WriteLine("--- Bank Transaction ---");
+            BankAccount account = new BankAccount("123-456", "John Doe", 3000.00);
+            account.Deposit(2000.00);
+            account.Withdraw(500.00);
+            account.DisplayBalance();
+        }
+    }
+}
